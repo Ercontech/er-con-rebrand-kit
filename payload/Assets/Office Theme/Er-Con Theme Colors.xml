@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Er-Con Technologies theme colours.
+
+  accent1-6 are deliberately ordered. Office cycles them in sequence for chart
+  series, so this order is what makes an untouched Excel or PowerPoint chart
+  come out correctly separated:
+
+    accent1  Navy       #0B2D5B   primary series
+    accent2  Red Clay   #A5522A   comparison series - carries the contrast
+    accent3  Signal     #0067D0   third series
+    accent4  Fog        #8C8B8A   context, baseline, "all others"
+    accent5  Amber      #EAA21A   caution, provisional
+    accent6  Green      #3F7A3A   restored, within tolerance
+
+  Navy and Signal are NOT adjacent on purpose. Under deuteranopia they measure
+  dE 14, which is the weakest pair in the palette; putting Clay between them
+  means the default two-series chart is Navy + Clay at dE 43 (66 under
+  deuteranopia) instead.
+
+  Four series is the ceiling for colour alone. At five and six, label series
+  directly on the chart - Navy vs Green falls to dE 10.5 under deuteranopia.
+
+  Neutrals are true neutrals (chroma under 1.5). Navy-tinted greys were the
+  cause of the muddy cast in the previous version.
+-->
+<a:clrScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="Er-Con Technologies">
+  <a:dk1><a:srgbClr val="1D1D1B"/></a:dk1>
+  <a:lt1><a:srgbClr val="FFFFFF"/></a:lt1>
+  <a:dk2><a:srgbClr val="061A36"/></a:dk2>
+  <a:lt2><a:srgbClr val="F4F4F3"/></a:lt2>
+  <a:accent1><a:srgbClr val="0B2D5B"/></a:accent1>
+  <a:accent2><a:srgbClr val="A5522A"/></a:accent2>
+  <a:accent3><a:srgbClr val="0067D0"/></a:accent3>
+  <a:accent4><a:srgbClr val="8C8B8A"/></a:accent4>
+  <a:accent5><a:srgbClr val="EAA21A"/></a:accent5>
+  <a:accent6><a:srgbClr val="3F7A3A"/></a:accent6>
+  <a:hlink><a:srgbClr val="0067D0"/></a:hlink>
+  <a:folHlink><a:srgbClr val="6A5948"/></a:folHlink>
+</a:clrScheme>

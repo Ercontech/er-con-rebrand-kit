@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  Er-Con Technologies theme fonts.
+
+    Headings  Archivo        a grotesque; squared, engineered, holds up at size
+    Body      Source Sans 3  a humanist text face; set for reading, not for display
+
+  A third face does the work the theme cannot hold: IBM Plex Mono carries every
+  value - money, dates, proposal numbers, percentages, data labels. OOXML has
+  only two theme font slots, so figure runs name Plex Mono outright. See
+  _build/set-typefaces.py, which applies that rule by the run's own text.
+
+  All three are SIL Open Font License 1.1, so they may be embedded in a document.
+  Turn embedding on: Word or PowerPoint, Preferences (Mac) or File > Options
+  (Windows) > Save > Embed fonts in the file. Embed the WHOLE font, not just the
+  characters used, or text the recipient types falls back.
+
+  Nothing in the templates names a font except the two slots below. Changing the
+  brand face is one edit here and in the templates' own theme part.
+-->
+<a:fontScheme xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" name="Er-Con Technologies">
+  <a:majorFont><a:latin typeface="Archivo"/><a:ea typeface=""/><a:cs typeface=""/></a:majorFont>
+  <a:minorFont><a:latin typeface="Source Sans 3"/><a:ea typeface=""/><a:cs typeface=""/></a:minorFont>
+</a:fontScheme>
