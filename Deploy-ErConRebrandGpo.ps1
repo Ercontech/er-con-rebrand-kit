@@ -83,7 +83,7 @@ if (-not $SkipAssetShare) {
     & (Join-Path $PSScriptRoot 'New-ErConAssetShare.ps1') -ConfirmDomainWide er-contech -SourceAssets (Join-Path $payload 'Assets')
 }
 
-Write-Step "Copying the kit to \\\$dns\SYSVOL\$dns\ErCon-Rebrand"
+Write-Step "Copying the kit to \\$dns\SYSVOL\$dns\ErCon-Rebrand"
 $sysvol = "\\$dns\SYSVOL\$dns\ErCon-Rebrand"
 New-Item -ItemType Directory -Force -Path $sysvol | Out-Null
 & robocopy.exe $payload $sysvol /MIR /R:2 /W:2 /NFL /NDL /NP
@@ -249,6 +249,6 @@ Write-Output ""
 Write-Output "Linked. Version $newVersion."
 Write-Output "Fonts install at the next startup. The asset folder copies at the next sign-in."
 Write-Output "On a pilot PC: gpupdate /force, then restart, then sign in and run"
-Write-Output "  \\\$dns\SYSVOL\$dns\ErCon-Rebrand\Verify-ErConRebrand.ps1"
+Write-Output "  \\$dns\SYSVOL\$dns\ErCon-Rebrand\Verify-ErConRebrand.ps1"
 Write-Output "SYSVOL has to replicate before another site will see the files."
 Write-Output "To take the link back off: .\Unlink-ErConRebrandGpo.ps1 -ConfirmDomainWide er-contech"
