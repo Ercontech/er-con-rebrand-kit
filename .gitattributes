@@ -1,0 +1,13 @@
+* text=auto
+*.ps1 text eol=crlf
+*.md text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.ttf binary
+*.otf binary
+*.pdf binary
+*.png binary
+*.svg text eol=lf
+*.dotx binary
+*.potx binary
+*.xml text eol=lf
