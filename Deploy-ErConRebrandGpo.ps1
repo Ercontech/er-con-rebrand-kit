@@ -75,12 +75,22 @@ Write-Output "Share:      $(if ($SkipAssetShare) { 'Skipped. -SkipAssetShare was
 $payload = Join-Path $PSScriptRoot 'payload'
 $manifest = Join-Path $payload 'fonts.manifest.json'
 if (-not (Test-Path -LiteralPath $manifest)) {
-    throw "payload\fonts.manifest.json is missing. Unzip the kit again and run this script from the ErCon-Rebrand-GPO folder."
-}
+    $here = (Get-Location).Path
+    throw @"
+payload\fonts.manifest.json is missing.
 
-if (-not $SkipAssetShare) {
-    Write-Step 'Creating the shared folder on D:'
-    & (Join-Path $PSScriptRoot 'New-ErConAssetShare.ps1') -ConfirmDomainWide er-contech -SourceAssets (Join-Path $payload 'Assets')
+You must run this script from the folder that contains Deploy-ErConRebrandGpo.ps1
+and the payload\ directory (the kit root, often named ErCon-Rebrand-GPO).
+
+  Current directory:  $here
+  Script location:    $PSScriptRoot
+
+Typical fix:
+  cd C:\Path\Where\You\Unzipped\ErCon-Rebrand-GPO
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Deploy-ErConRebrandGpo.ps1 -ConfirmDomainWide er-contech -TargetDn `"OU=Pilot,DC=er-contech,DC=local`"
+
+Do not run the command from C:\Windows\system32 or any other folder that does not contain the script.
+"@
 }
 
 Write-Step "Copying the kit to \\$dns\SYSVOL\$dns\ErCon-Rebrand"
