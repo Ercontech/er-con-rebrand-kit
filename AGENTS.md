@@ -21,6 +21,7 @@ Read [README.md](README.md) for the map and [ADMIN-INSTALLATION.md](ADMIN-INSTAL
 13. `psscripts.ini` is UTF-16 LE. The deploy script writes it that way. Do not “fix” the encoding.
 14. Macs and Entra-only devices are out of scope. Do not add a branch for them in these scripts.
 15. `Copy-ErConAssets.ps1` uses `robocopy /MIR` into an IT-owned Documents folder. Do not point `/MIR` at a broader path.
+16. Operators must run from the kit root. The most common failure is invoking `.\Deploy-ErConRebrandGpo.ps1` from `C:\Windows\system32` or another folder that does not contain the script. Docs must keep a prominent “change directory first” instruction and the exact error message. When improving error handling, prefer a message that prints the current directory and `$PSScriptRoot`.
 
 ## Where behavior lives
 
@@ -67,4 +68,4 @@ On a domain computer the human test is still required. ADMIN-INSTALLATION.md ste
 
 Match the scripts that are already here. Windows PowerShell 5.1, `#Requires` at the top, `LiteralPath`, explicit errors, no aliases in new code. Comments explain a constraint a later edit would otherwise violate, not the next line. Do not reformat a file you are not changing.
 
-Operator-facing text is for Seabed IT. Short sentences. Real paths. No filler.
+Operator-facing text is for Seabed IT. Short sentences. Real paths. No filler. Prefer concrete error messages and exact PowerShell commands over general advice.

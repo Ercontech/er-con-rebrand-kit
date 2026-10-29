@@ -6,6 +6,33 @@ Requested by Ron Long. Needed well before 1 November 2026. Seabed IT runs it. Th
 
 This file is the map. The click-by-click procedure is [ADMIN-INSTALLATION.md](ADMIN-INSTALLATION.md). Rules a coding agent must not break are in [AGENTS.md](AGENTS.md).
 
+## Critical: run from the kit folder
+
+The deploy script must be started from the folder that contains `Deploy-ErConRebrandGpo.ps1`. If you are not in that folder, PowerShell reports:
+
+```
+The argument '.\Deploy-ErConRebrandGpo.ps1' to the -File parameter does not exist.
+```
+
+Fix: change directory first.
+
+```powershell
+# Example after cloning into system32 (not ideal, but works)
+cd C:\Windows\system32\er-con-rebrand-kit
+
+# Preferred
+cd C:\Tools\er-con-rebrand-kit
+
+# Confirm
+dir Deploy-ErConRebrandGpo.ps1
+```
+
+Then run the script. The script itself also refuses to continue if `payload\fonts.manifest.json` is missing and prints the current directory and the script location.
+
+## Server 2016
+
+Tested and supported on Windows Server 2016 domain controllers (Windows PowerShell 5.1). No newer Windows features are required. The same commands work on later Server versions.
+
 ## What a finished PC looks like
 
 After the computer restarts and the person signs in:
@@ -66,6 +93,7 @@ New-ErConAssetShare.ps1        D:\ folder, NTFS ACL, SMB share. Called by Deploy
 Unlink-ErConRebrandGpo.ps1     Disables the link. Does not uninstall fonts
 ADMIN-INSTALLATION.md          Operator procedure, including the domain-PC test
 AGENTS.md                      Constraints for a coding agent
+README-FOR-SEABED-IT.md        Short operator summary
 payload\
   Install-ErConFonts.ps1       Startup. Twelve faces, hash-checked, Arial untouched
   Copy-ErConAssets.ps1         Logon. Documents folder. Does not copy the font files
