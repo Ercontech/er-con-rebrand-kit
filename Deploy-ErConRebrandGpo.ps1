@@ -218,12 +218,8 @@ $inheritance = Get-GPInheritance -Target $TargetDn
 $link = @($inheritance.GpoLinks | Where-Object { $_.DisplayName -eq $GpoName })
 $enforcedFlag = $(if ($Enforce) { 'Yes' } else { 'No' })
 if ($link.Count -eq 0) {
-    if ($Enforce) {
-        New-GPLink -Name $GpoName -Target $TargetDn -LinkEnabled Yes -Enforced | Out-Null
-    }
-    else {
-        New-GPLink -Name $GpoName -Target $TargetDn -LinkEnabled Yes | Out-Null
-    }
+    # Server 2016 GroupPolicy module requires -Enforced Yes|No, not a bare switch.
+    New-GPLink -Name $GpoName -Target $TargetDn -LinkEnabled Yes -Enforced $enforcedFlag | Out-Null
 }
 else {
     Set-GPLink -Name $GpoName -Target $TargetDn -LinkEnabled Yes -Enforced $enforcedFlag | Out-Null
